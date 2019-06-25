@@ -1266,7 +1266,7 @@ export const routes: Routes = [
 
 
 
-```json
+```javascript
 new CopyWebpackPlugin([ 
   { from: { glob: "assets/*.json" } },
 ])
@@ -1278,7 +1278,7 @@ new CopyWebpackPlugin([
 
 **webpack.config.js**
 
-```json
+```javascript
 // Copy assets to out dir. Add your own globs as needed.
 new CopyWebpackPlugin([
   { from: { glob: "fonts/**" } },
