@@ -1232,6 +1232,8 @@ export const routes: Routes = [
 
 **Step 3**
 
+Update the NativeScript template:
+
 
 
 **shipping.component.tns.html**
@@ -1260,11 +1262,19 @@ export const routes: Routes = [
 
 
 
+Don't worry if the app doesn't work yet. Follow the below step before you test.
+
 **Step 4**
 
 > TODO: Add instructions and explanation why we need to do this
+>
+> 
+>
+> Open wepback.config.js and add the following line
 
 
+
+To make it possible for NativeScript to load **.json** files from the **assets** folder, you need to instruct Webpack to copy the file into the app bundle. Which can be done with the help of `CopyWebpackPlugin` function, like this:
 
 ```javascript
 new CopyWebpackPlugin([ 
@@ -1273,6 +1283,12 @@ new CopyWebpackPlugin([
 ```
 
 
+
+Open **webpack.config.js**, find:
+
+ `// Copy assets to out dir. Add your own globs as needed.` 
+
+and update it to look like this:
 
 
 
