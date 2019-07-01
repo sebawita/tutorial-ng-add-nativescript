@@ -37,17 +37,29 @@ Check out this [tutorial](https://docs.nativescript.org/angular/start/introducti
 
 ## Intro
 
-As the basis of this tutorial, you will use a completed version of the Getting Started Tutorial.
+As the basis of this tutorial, you will use a completed version of the Getting Started Tutorial for Angular.
 
 If you don't have your version around, you can clone it from [https://github.com/sebawita/angular-getting-started/](https://github.com/sebawita/angular-getting-started/).
 
-
+```
+git clone https://github.com/sebawita/angular-getting-started.git
+```
 
 The idea is to add NativeScript to the Getting Started app, and then step by step convert all web components to also work in NativeScript.
 
 
 
 ## Setup
+
+### Angular CLI
+
+To take advantage of the automated migration commands for NativeScript Angular you will need to install the **Angular CLI**. Run the following command:
+
+```
+npm install --global @angular/cli
+```
+
+### NativeScript CLI
 
 To build mobile apps with NativeScript you will need to install the **NativeScript CLI**. Run the following command:
 
@@ -61,11 +73,11 @@ npm install --global nativescript
 
 <!--b) **Local builds**: this perform a full Android/iOS build on your computer, which requires you to set up the Android SDK and/or XCode - [here is how](https://docs.nativescript.org/angular/start/quick-setup#full-setup) - and then deploys the app to a simulator or a connected device.-->
 
-You can choose two ways of building your apps:
+You can choose between two ways of building your apps:
 
 ### Local Builds
 
-The NativeScript CLI performs a full Android/iOS build on your computer, and then deploys app the app to a simulator or a connected device.
+The NativeScript CLI performs a full Android/iOS build on your computer, and then deploys the app to a simulator or a connected device.
 
 This requires you to set up the **Android SDK** and/or **XCode**. Here are the [full setup instructions](https://docs.nativescript.org/angular/start/quick-setup#full-setup).
 
@@ -90,7 +102,7 @@ The NativeScript CLI performs only the build of your Angular code while skipping
 To use preview, you need to install two companion apps on your Android/iOS device(s):
 
 - **NativeScript Playground** ([Android](https://play.google.com/store/apps/details?id=org.nativescript.play), [iOS](https://apps.apple.com/us/app/nativescript-playground/id1263543946)) — used to scan a QR code provided by the NativeScript CLI
-- **NativeScript Preview** ( [Android](https://play.google.com/store/apps/details?id=org.nativescript.preview), [iOS](https://apps.apple.com/us/app/nativescript-preview/id1264484702)) — used to host display your app
+- **NativeScript Preview** ([Android](https://play.google.com/store/apps/details?id=org.nativescript.preview), [iOS](https://apps.apple.com/us/app/nativescript-preview/id1264484702)) — used to host display your app
 
 
 
@@ -121,7 +133,7 @@ This command adds the **NativeScript-specific**:
 - npm modules
 - AppModule definition
 - AppComponent definition
-- tsconfig
+- TypeScript configuration
 
 And as a result it allows you to build a NativeScript app from the same project.
 
