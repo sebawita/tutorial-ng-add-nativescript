@@ -90,7 +90,7 @@ The NativeScript CLI performs only the build of your Angular code while skipping
 To use preview, you need to install two companion apps on your Android/iOS device(s):
 
 - **NativeScript Playground** ([Android](https://play.google.com/store/apps/details?id=org.nativescript.play), [iOS](https://apps.apple.com/us/app/nativescript-playground/id1263543946)) — used to scan a QR code provided by the NativeScript CLI
-- **NativeScript Preview** ( [Android](https://play.google.com/store/apps/details?id=org.nativescript.preview), [iOS](https://apps.apple.com/us/app/nativescript-preview/id1264484702)) — used to host display your app
+- **NativeScript Preview** ([Android](https://play.google.com/store/apps/details?id=org.nativescript.preview), [iOS](https://apps.apple.com/us/app/nativescript-preview/id1264484702)) — used to host display your app
 
 
 
