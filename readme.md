@@ -63,7 +63,7 @@ npm install --global nativescript
 
 <!--b) **Local builds**: this perform a full Android/iOS build on your computer, which requires you to set up the Android SDK and/or XCode - [here is how](https://docs.nativescript.org/angular/start/quick-setup#full-setup) - and then deploys the app to a simulator or a connected device.-->
 
-You can choose two ways of building your apps:
+You can choose between two ways of building your apps:
 
 ### Local Builds
 
