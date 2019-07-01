@@ -51,6 +51,16 @@ The idea is to add NativeScript to the Getting Started app, and then step by ste
 
 ## Setup
 
+### Angular CLI
+
+To take advantage of the automated migration commands for NativeScript Angular you will need to install the **Angular CLI**. Run the following command:
+
+```
+npm install --global @angular/cli
+```
+
+### NativeScript CLI
+
 To build mobile apps with NativeScript you will need to install the **NativeScript CLI**. Run the following command:
 
 ```bash
