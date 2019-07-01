@@ -65,7 +65,7 @@ You can choose two ways of building your apps:
 
 ### Local Builds
 
-The NativeScript CLI performs a full Android/iOS build on your computer, and then deploys app the app to a simulator or a connected device.
+The NativeScript CLI performs a full Android/iOS build on your computer, and then deploys the app to a simulator or a connected device.
 
 This requires you to set up the **Android SDK** and/or **XCode**. Here are the [full setup instructions](https://docs.nativescript.org/angular/start/quick-setup#full-setup).
 
