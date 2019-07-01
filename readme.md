@@ -41,7 +41,9 @@ As the basis of this tutorial, you will use a completed version of the Getting S
 
 If you don't have your version around, you can clone it from [https://github.com/sebawita/angular-getting-started/](https://github.com/sebawita/angular-getting-started/).
 
-
+```
+git clone https://github.com/sebawita/angular-getting-started.git
+```
 
 The idea is to add NativeScript to the Getting Started app, and then step by step convert all web components to also work in NativeScript.
 
