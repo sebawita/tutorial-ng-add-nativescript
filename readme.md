@@ -133,7 +133,7 @@ This command adds the **NativeScript-specific**:
 - npm modules
 - AppModule definition
 - AppComponent definition
-- tsconfig
+- TypeScript configuration
 
 And as a result it allows you to build a NativeScript app from the same project.
 
