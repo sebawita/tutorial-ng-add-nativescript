@@ -174,7 +174,7 @@ tns preview --bundle
 
 After a short moment, the CLI will present you with a QR Code. Scan it with the **NativeScript Playground** app, which will connect your project with the **NativeScript Preview** app.
 
-As soon as you scan the QR Code, the CLI will compile the JavaScript code for Android or iOS, bundle it and push it to the **NativeScript Preview** app.
+As soon as you scan the QR Code, the CLI will bundle the TypeScript code from your project and push it to the **NativeScript Preview** app.
 
 
 
