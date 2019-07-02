@@ -141,7 +141,7 @@ However, this does not convert your components to work in a mobile app, as HTML 
 
 ### Code Separation
 
-Before you can start code sharing, you need to know how to separate the web code from the mobile code. This is important, so that you could easily create platform-specific code without creating conflicts.
+Before you can start sharing code, you need to know how to separate the web code from the mobile code. This is important, so that you could easily create platform-specific code without creating conflicts.
 
 To do that you can use a simple **naming convention**. By adding a **.tns** before the file extension, you can indicate that this file is NativeScript-specific, while the same file without the **.tns** extension is marked as web-specific. If we have just one file without the **.tns** extension, then this makes it a shared file.
 
