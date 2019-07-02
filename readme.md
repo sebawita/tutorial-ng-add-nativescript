@@ -147,8 +147,8 @@ To do that you can use a simple **naming convention**. By adding a **.tns** befo
 
 <!--For example, you can notice that in the project there are two files:-->
 
-- <!--app.module.ts - the Entry Module file for web-->
-- <!--app.module**.tns**.ts - the Entry Module file for mobile-->
+<!-- - app.module.ts - the Entry Module file for web-->
+<!-- - app.module**.tns**.ts - the Entry Module file for mobile-->
 
 #### Component — Code-Sharing Format
 
