@@ -1096,7 +1096,7 @@ Go to the [download page](https://fontawesome.com/download) and download icons *
 
 **Step B**
 
-Create a `font` folder in `src`:
+Create a `fonts` folder in `src`:
 
 ```
 src
