@@ -880,7 +880,7 @@ Migrating the **Cart** component, is a little more challenging task, as it uses 
 
 ### Handling Web/Mobile specific code #2
 
-One of the best ways to handle a scenario like this to extract the constructing of a `FormBuilder` to a service. Then have two implementations of the same service, one that uses `FormBuilder`, and the other that recreates the same functionality without a `FormBuilder`.
+One of the best ways to handle a scenario like is this to extract the constructing of a `FormBuilder` to a service. Then have two implementations of the same service, one that uses `FormBuilder`, and the other that recreates the same functionality without a `FormBuilder`.
 
 
 
