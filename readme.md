@@ -1078,6 +1078,7 @@ The **Product List** should look like this:
 
 <img src="./img/6-product-list-emoji.png?raw=true" height="400">
 
+<!--
 #### Use font icons
 
 If you don't like the emoji for a shopping cart 🛒, you can use font icons instead.
@@ -1165,7 +1166,7 @@ Now, the **Product List** should look like this:
 
 <img src="./img/6-product-list-icon.png?raw=true" height="400">
 
-
+-->
 
 **Step 4**
 
