@@ -952,7 +952,7 @@ export class CheckoutFormService {
 
 **Step 3**
 
-Finally, you need to update the **Cart** class to use the `CheckoutFormService`.
+Finally, you need to update the **CartComponent** class to use the `CheckoutFormService`.
 
 Add `CheckoutFormService` to the `@Component` => `providers`, like this:
 
