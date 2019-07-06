@@ -667,7 +667,7 @@ You should update the mobile template like this:
 
 ```html
 <StackLayout *ngIf="product.price > 700">
-  <Button (tap)="notify.emit()" text="Notify Me" class="btn-blue-outline"></Button>
+  <Button (tap)="notify.emit()" text="Notify Me" class="btn-green"></Button>
 </StackLayout>
 ```
 
