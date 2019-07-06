@@ -956,6 +956,8 @@ Finally, you need to update the **CartComponent** class to use the `CheckoutForm
 
 Add `CheckoutFormService` to the `@Component` => `providers`, like this:
 
+**cart/cart.component.ts**
+
 ```typescript
 import { CheckoutFormService } from '@src/app/cart/checkout-form.service';
 
@@ -970,6 +972,8 @@ import { CheckoutFormService } from '@src/app/cart/checkout-form.service';
 
 
 Update the constructor to use `CheckoutFormService` instead of `FormBuilder`, like this:
+
+**cart/cart.component.ts**
 
 ```typescript
   constructor(
