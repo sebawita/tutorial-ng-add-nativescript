@@ -206,7 +206,7 @@ Find the src/app/auto-generated/**auto-generated.component.tns.html** file and c
 
 ## Prepare NgModule for {N}
 
-Before you start converting all components to NativeScript, you need make sure that the NativeScript AppModule (**app.module.tns.ts**) imports all the required modules, which are used by the services in the project.
+Before you start converting all components to NativeScript, you need to make sure that the NativeScript AppModule (**app.module.tns.ts**) imports all the required modules, which are used by the services in the project.
 
 When you check **cart.service.ts** you will find that it Injects the **HttpClient**:
 
@@ -965,7 +965,7 @@ import { CheckoutFormService } from '@src/app/cart/checkout-form.service';
   selector: 'app-cart',
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css'],
-  providers: [ CheckoutFormService ]
+  providers: [CheckoutFormService]
 })
 ```
 
@@ -981,7 +981,6 @@ Update the constructor to use `CheckoutFormService` instead of `FormBuilder`, li
     private formService: CheckoutFormService
   ) {
     this.items = this.cartService.getItems();
-
     this.checkoutForm = this.formService.prepareCheckoutForm();
   }
 ```
@@ -1002,7 +1001,7 @@ import { CheckoutFormService } from '@src/app/cart/checkout-form.service';
   selector: 'app-cart',
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css'],
-  providers: [ CheckoutFormService ]
+  providers: [CheckoutFormService]
 })
 export class CartComponent {
   items;
@@ -1013,7 +1012,6 @@ export class CartComponent {
     private formService: CheckoutFormService
   ) {
     this.items = this.cartService.getItems();
-
     this.checkoutForm = this.formService.prepareCheckoutForm();
   }
 
