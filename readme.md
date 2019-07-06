@@ -775,7 +775,6 @@ Update the navigation configuration in **app-routing.module.tns.ts**:
 ```typescript
 import { ProductDetailsComponent } from '@src/app/product-details/product-details.component';
 
-
 export const routes: Routes = [
   { path: '', component: ProductListComponent },
   { path: 'products/:productId', component: ProductDetailsComponent },
@@ -1218,9 +1217,9 @@ The **Cart** page should look like this:
 
 ## Migrate Component: Shipping
 
-> TODO: Add instruction on how to go step by step here
+The final component to migrate is the **Shipping** component. This is the component the app navigates to during cart checkout for reviewing the available shipping options.
 
-
+You could execute the routine:
 
 **Step 1**
 
@@ -1249,8 +1248,6 @@ export const routes: Routes = [
 
 Update the NativeScript template:
 
-
-
 **shipping.component.tns.html**
 
 ```html
@@ -1275,21 +1272,13 @@ Update the NativeScript template:
 </StackLayout>
 ```
 
-
-
 Don't worry if the app doesn't work yet. Follow the below step before you test.
 
 **Step 4**
 
-> TODO: Add instructions and explanation why we need to do this
->
-> 
->
-> Open wepback.config.js and add the following line
+NativeScript build process consists of two steps: bundling and building the native app. By default, there are certain files that do not include in the application's bundle such as fonts and images. The **webpack** bundler is explicitly instructed to copy these types of files to the native application in its configuration file.
 
-
-
-To make it possible for NativeScript to load **.json** files from the **assets** folder, you need to instruct Webpack to copy the file into the app bundle. Which can be done with the help of `CopyWebpackPlugin` function, like this:
+Therefore, to make it possible for NativeScript to load **.json** files from the **assets** folder, you need to give information Webpack to copy the file into the native application. This can be done with the help of `CopyWebpackPlugin` like this:
 
 ```javascript
 new CopyWebpackPlugin([ 
@@ -1297,75 +1286,26 @@ new CopyWebpackPlugin([
 ])
 ```
 
-
-
-Open **webpack.config.js**, find:
-
- `// Copy assets to out dir. Add your own globs as needed.` 
-
-and update it to look like this:
-
-
+As it is already in use, just open **webpack.config.js**, find the comment line `// Copy assets to out dir. Add your own globs as needed.`
+and update as follows:
 
 **webpack.config.js**
 
 ```javascript
 // Copy assets to out dir. Add your own globs as needed.
 new CopyWebpackPlugin([
-  { from: { glob: "fonts/**" } },
   { from: { glob: "assets/*.json" } },
+  { from: { glob: "fonts/**" } },
   { from: { glob: "**/*.jpg" } },
   { from: { glob: "**/*.png" } },
 ], { ignore: [`${relative(appPath, appResourcesFullPath)}/**`] }),
 ```
 
-*May need to kill the build and re-run.*
-
-
+In order to apply the changes to the `webpack.config.js` file, we need to stop the currently running process and start it again to pick up its new configuration. So, go back to your console/terminal and execute again `tns preview --bundle`.
 
 ## Align Routing
 
 > TODO: Is it a good idea to move routes to app-routing.module.ts
 
 ???
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
