@@ -252,8 +252,6 @@ This is enough to make the **CartService** to work for both Web and Mobile, with
 
 Here is a high-level visualisation of how the right implementation of the **HttpClient** is provided to the service at build time.
 
-> TODO: Get a version of the image that says app.module.ts/app.module.tns.ts => cart.service.ts => apps
-
 <img src="./img/2-http-client.png?raw=true">
 
 
