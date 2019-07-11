@@ -39,7 +39,7 @@ Check out this [tutorial](https://docs.nativescript.org/angular/start/introducti
 
 As the basis of this tutorial, you will use a completed version of the Getting Started Tutorial for Angular.
 
-If you don't have your version around, you can clone it from [https://github.com/sebawita/angular-getting-started/](https://github.com/sebawita/angular-getting-started/).
+If you don't have your version around, you can fork it and clone it from [https://github.com/sebawita/angular-getting-started/](https://github.com/sebawita/angular-getting-started/).
 
 ```
 git clone https://github.com/sebawita/angular-getting-started.git
