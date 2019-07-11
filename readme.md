@@ -528,7 +528,7 @@ Note the following:
   ```
 
 - `let-product="item"` — is used to provide a **name** for each item in the array, in this case the name for each item is **product**,
-- `let-productId="index" — is used to provide a name for **index** of the item, in this case the name of the idex is **productId**
+- `let-productId="index" — is used to provide a name for **index** of the item, in this case the name of the index is **productId**
 
 
 
@@ -578,6 +578,14 @@ You can convert it to the {N} template by replacing:
     [text]="product.name" textWrap="true" class="title">
   </Label>
   ```
+
+- the `p` element again with a `<Label>` where we can preserve the `*ngIf` directive and add a `text` property as follows:
+
+```
+<Label *ngIf="product.description"
+        text="Description: {{ product.description }}" textWrap="true">
+</Label>
+```
 
 - the `<button>` with a `<Button>` — where you use the `(tap)` event instead of the `(click)` event (as you don't click on touch screens), and the text of the button is provided with `[text]`:
 
