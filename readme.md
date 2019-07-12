@@ -894,7 +894,7 @@ One of the best ways to handle a scenario like is this to extract the constructi
 Create a **Checkout Form** service:
 
 ```bash
-ng generate service cart/checkout-form
+ng generate service form/checkout-form
 ```
 
 Remove `providedIn` from the directive definition, as you will provide this service directly in the **Cart** component.
@@ -964,7 +964,7 @@ Add `CheckoutFormService` to the `@Component` => `providers`, like this:
 **cart/cart.component.ts**
 
 ```typescript
-import { CheckoutFormService } from '@src/app/cart/checkout-form.service';
+import { CheckoutFormService } from '@src/app/form/checkout-form.service';
 
 @Component({
   selector: 'app-cart',
@@ -1000,7 +1000,7 @@ Also, make sure to remove all references to `FormBuilder`.
 import { Component } from '@angular/core';
 
 import { CartService } from '@src/app/cart.service';
-import { CheckoutFormService } from '@src/app/cart/checkout-form.service';
+import { CheckoutFormService } from '@src/app/form/checkout-form.service';
 
 @Component({
   selector: 'app-cart',
