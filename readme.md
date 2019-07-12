@@ -206,7 +206,7 @@ Find the src/app/auto-generated/**auto-generated.component.tns.html** file and c
 
 ## Prepare NgModule for {N}
 
-Before you start converting all components to NativeScript, you need make sure that the NativeScript AppModule (**app.module.tns.ts**) imports all the required modules, which are used by the services in the project.
+Before you start converting all components to NativeScript, you need to make sure that the NativeScript AppModule (**app.module.tns.ts**) imports all the required modules, which are used by the services in the project.
 
 When you check **cart.service.ts** you will find that it Injects the **HttpClient**:
 
@@ -232,7 +232,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 NativeScript provides a mobile specific implementation of the **HttpClient**, which is provided via **NativeScriptHttpClientModule**. 
 
-Open **app.module.tns.ts** where you will find a commented import for **NativeScriptHttpClientModule** class (*line 13*). Uncomment it, and add **NativeScriptHttpClientModule** to @NgModule **imports**, like this: 
+Open **app.module.tns.ts** where you will find a commented import for **NativeScriptHttpClientModule** class (*line 13*). Uncomment it, and add **NativeScriptHttpClientModule** to @NgModule **imports**, like this:
 
 ```typescript
 import { NativeScriptHttpClientModule } from 'nativescript-angular/http-client';
@@ -251,8 +251,6 @@ import { NativeScriptHttpClientModule } from 'nativescript-angular/http-client';
 This is enough to make the **CartService** to work for both Web and Mobile, without any change required to the service itself.
 
 Here is a high-level visualisation of how the right implementation of the **HttpClient** is provided to the service at build time.
-
-> TODO: Get a version of the image that says app.module.ts/app.module.tns.ts => cart.service.ts => apps
 
 <img src="./img/2-http-client.png?raw=true">
 
@@ -523,14 +521,14 @@ Add a list `ListView` component inside the `StackLayout`, like this:
 
 Note the following:
 
-- `[items]` — is used to provide a **data source**, it can also be used with an `async` pipe, like this: 
+- `[items]` — is used to provide a **data source**, it can also be used with an `async` pipe, like this:
 
    ```html
   <ListView [items]="data | async">
   ```
 
 - `let-product="item"` — is used to provide a **name** for each item in the array, in this case the name for each item is **product**,
-- `let-productId="index" — is used to provide a name for **index** of the item, in this case the name of the idex is **productId**
+- `let-productId="index" — is used to provide a name for **index** of the item, in this case the name of the index is **productId**
 
 
 
@@ -580,6 +578,14 @@ You can convert it to the {N} template by replacing:
     [text]="product.name" textWrap="true" class="title">
   </Label>
   ```
+
+- the `p` element again with a `<Label>` where we can preserve the `*ngIf` directive and add a `text` property as follows:
+
+```
+<Label *ngIf="product.description"
+        text="Description: {{ product.description }}" textWrap="true">
+</Label>
+```
 
 - the `<button>` with a `<Button>` — where you use the `(tap)` event instead of the `(click)` event (as you don't click on touch screens), and the text of the button is provided with `[text]`:
 
@@ -775,7 +781,6 @@ Update the navigation configuration in **app-routing.module.tns.ts**:
 ```typescript
 import { ProductDetailsComponent } from '@src/app/product-details/product-details.component';
 
-
 export const routes: Routes = [
   { path: '', component: ProductListComponent },
   { path: 'products/:productId', component: ProductDetailsComponent },
@@ -889,7 +894,7 @@ One of the best ways to handle a scenario like is this to extract the constructi
 Create a **Checkout Form** service:
 
 ```bash
-ng generate service cart/checkout-form
+ng generate service form/checkout-form
 ```
 
 Remove `providedIn` from the directive definition, as you will provide this service directly in the **Cart** component.
@@ -959,13 +964,13 @@ Add `CheckoutFormService` to the `@Component` => `providers`, like this:
 **cart/cart.component.ts**
 
 ```typescript
-import { CheckoutFormService } from '@src/app/cart/checkout-form.service';
+import { CheckoutFormService } from '@src/app/form/checkout-form.service';
 
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css'],
-  providers: [ CheckoutFormService ]
+  providers: [CheckoutFormService]
 })
 ```
 
@@ -981,7 +986,6 @@ Update the constructor to use `CheckoutFormService` instead of `FormBuilder`, li
     private formService: CheckoutFormService
   ) {
     this.items = this.cartService.getItems();
-
     this.checkoutForm = this.formService.prepareCheckoutForm();
   }
 ```
@@ -996,13 +1000,13 @@ Also, make sure to remove all references to `FormBuilder`.
 import { Component } from '@angular/core';
 
 import { CartService } from '@src/app/cart.service';
-import { CheckoutFormService } from '@src/app/cart/checkout-form.service';
+import { CheckoutFormService } from '@src/app/form/checkout-form.service';
 
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css'],
-  providers: [ CheckoutFormService ]
+  providers: [CheckoutFormService]
 })
 export class CartComponent {
   items;
@@ -1013,7 +1017,6 @@ export class CartComponent {
     private formService: CheckoutFormService
   ) {
     this.items = this.cartService.getItems();
-
     this.checkoutForm = this.formService.prepareCheckoutForm();
   }
 
@@ -1031,8 +1034,6 @@ export class CartComponent {
 #### Summary
 
 Splitting platform specific functionality into separate files/services, allows you to handle code differences in an elegant fashion, whilst keeping the common functionality shared.
-
-> TODO: This section probably needs a better explanation
 
 ### Migrating the rest of the component
 
@@ -1071,7 +1072,7 @@ Update **ProductList** template, to add a navigation link (`ActionItem`) for car
 ```html
 <ActionBar title="Products">
   <ActionItem ios.position="right" [nsRouterLink]="['/cart']">
-    <Label text="🛒 Cart" class="action-bar-item"></Label>
+    <Label text="Cart 🛒" class="action-bar-item"></Label>
   </ActionItem>
 </ActionBar>
 ```
@@ -1080,6 +1081,7 @@ The **Product List** should look like this:
 
 <img src="./img/6-product-list-emoji.png?raw=true" height="400">
 
+<!--
 #### Use font icons
 
 If you don't like the emoji for a shopping cart 🛒, you can use font icons instead.
@@ -1167,17 +1169,152 @@ Now, the **Product List** should look like this:
 
 <img src="./img/6-product-list-icon.png?raw=true" height="400">
 
-
+-->
 
 **Step 4**
 
-> TODO: need to add a step for [(ngModel)] NativeScriptFormsModule
+
+
+Translate HTML to NativeScript template.
+
+**cart.component.html**
+
+```html
+<h3>Cart</h3>
+
+<p>
+  <a routerLink="/shipping">Shipping Prices</a>
+</p>
+
+<div class="cart-item" *ngFor="let item of items">
+  <span>{{ item.name }} </span>
+  <span>{{ item.price | currency }}</span>
+</div>
+
+<form [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value)">
+  <div>
+    <label>Name</label>
+    <input type="text" formControlName="name">
+  </div>
+
+  <div>
+    <label>Address</label>
+    <input type="text" formControlName="address">
+  </div>
+
+  <button class="button" type="submit">Purchase</button>
+</form>
+```
 
 
 
-> TODO: provide description
+The above translates really nicely, as follows:
 
+- `<h3>` => `ActionBar`
 
+  ```html
+  <ActionBar title="Cart">
+  </ActionBar>
+  ```
+
+As a container we could use a `StackLayout` and position it inside a `ScrollView` to provide a scrollable area when the content is larger than its bounds.
+
+  ```html
+  <ScrollView>
+    <StackLayout>
+
+    </StackLayout>
+  </ScrollView>
+  ```
+
+Then:
+
+```html
+<p>
+  <a routerLink="/shipping">Shipping Prices</a>
+</p>
+```
+
+goes to
+
+```html
+<Button row="0"
+  text="Shipping Prices" nsRouterLink="/shipping" class="btn btn-outline">
+</Button>
+```
+
+and
+
+```html
+<div class="cart-item" *ngFor="let item of items">
+  <span>{{ item.name }} </span>
+  <span>{{ item.price | currency }}</span>
+</div>
+```
+
+goes to
+
+```html
+<Label row="1" *ngIf="!items.length"
+  text="No Items in the Cart" class="h2 text-center m-10">
+</Label>
+
+<StackLayout row="1" class="m-8">
+  <GridLayout *ngFor="let item of items" columns="* auto" class="list-group cart-item">
+    <Label col="0" [text]="item.name" class="list-group-item"></Label>
+    <Label col="1" [text]="item.price | currency" class="list-group-item"></Label>
+  </GridLayout>
+</StackLayout>
+```
+
+The `form` could transfer from
+
+```html
+<form [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value)">
+  <div>
+    <label>Name</label>
+    <input type="text" formControlName="name">
+  </div>
+
+  <div>
+    <label>Address</label>
+    <input type="text" formControlName="address">
+  </div>
+
+  <button class="button" type="submit">Purchase</button>
+</form>
+```
+
+to
+
+```html
+<GridLayout row="2" rows="auto auto auto" columns="auto *" class="form">
+  <Label row="0" col="0" text="Name"></Label>
+  <TextField row="0" col="1" [(ngModel)]="checkoutForm.name" hint="name..."></TextField>
+  <Label row="1" col="0" text="Address"></Label>
+  <TextField row="1" col="1" [(ngModel)]="checkoutForm.address" hint="address..."></TextField>
+</GridLayout>
+<Button text="Purchase" (tap)="onSubmit(checkoutForm)" class="btn-green"></Button>
+```
+
+Before we can use the `ngModel` directive in data binding, we must import the `NativeScriptFormsModule` and add it to the Angular module's imports list.
+
+Open **app.module.tns.ts** where you will find a commented import for **NativeScriptFormsModule** class (*line 10*). Uncomment it, and add **NativeScriptFormsModule** to @NgModule **imports**, like this:
+
+```typescript
+import { NativeScriptFormsModule } from 'nativescript-angular/forms';
+
+@NgModule({
+  ...
+  imports: [
+    NativeScriptModule,
+    AppRoutingModule,
+    NativeScriptHttpClientModule,
+    NativeScriptFormsModule
+  ],
+```
+
+Finally, the **cart.component.tns.html** should look like this:
 
 ```html
 <ActionBar title="Cart">
@@ -1219,9 +1356,9 @@ The **Cart** page should look like this:
 
 ## Migrate Component: Shipping
 
-> TODO: Add instruction on how to go step by step here
+The final component to migrate is the **Shipping** component. This is the component the app navigates to during cart checkout for reviewing the available shipping options.
 
-
+You could execute the routine:
 
 **Step 1**
 
@@ -1250,8 +1387,6 @@ export const routes: Routes = [
 
 Update the NativeScript template:
 
-
-
 **shipping.component.tns.html**
 
 ```html
@@ -1276,21 +1411,13 @@ Update the NativeScript template:
 </StackLayout>
 ```
 
-
-
 Don't worry if the app doesn't work yet. Follow the below step before you test.
 
 **Step 4**
 
-> TODO: Add instructions and explanation why we need to do this
->
-> 
->
-> Open wepback.config.js and add the following line
+NativeScript build process consists of two steps: bundling and building the native app. By default, some files do not include in the application's bundle such as fonts and images. The **webpack** bundler is explicitly instructed to copy these types of files to the native application in its configuration file.
 
-
-
-To make it possible for NativeScript to load **.json** files from the **assets** folder, you need to instruct Webpack to copy the file into the app bundle. Which can be done with the help of `CopyWebpackPlugin` function, like this:
+Therefore, to make it possible for NativeScript to load **.json** files from the **assets** folder, you need to give information Webpack to copy the file into the native application. This can be done with the help of `CopyWebpackPlugin` like this:
 
 ```javascript
 new CopyWebpackPlugin([ 
@@ -1298,75 +1425,19 @@ new CopyWebpackPlugin([
 ])
 ```
 
-
-
-Open **webpack.config.js**, find:
-
- `// Copy assets to out dir. Add your own globs as needed.` 
-
-and update it to look like this:
-
-
+As it is already in use, just open **webpack.config.js**, find the comment line `// Copy assets to out dir. Add your own globs as needed.`
+and update as follows:
 
 **webpack.config.js**
 
 ```javascript
 // Copy assets to out dir. Add your own globs as needed.
 new CopyWebpackPlugin([
-  { from: { glob: "fonts/**" } },
   { from: { glob: "assets/*.json" } },
+  { from: { glob: "fonts/**" } },
   { from: { glob: "**/*.jpg" } },
   { from: { glob: "**/*.png" } },
 ], { ignore: [`${relative(appPath, appResourcesFullPath)}/**`] }),
 ```
 
-*May need to kill the build and re-run.*
-
-
-
-## Align Routing
-
-> TODO: Is it a good idea to move routes to app-routing.module.ts
-
-???
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+In order to apply the changes to the `webpack.config.js` file, we need to stop the currently running process and start it again to pick up its new configuration. So, go back to your console/terminal and execute again `tns preview --bundle`.
