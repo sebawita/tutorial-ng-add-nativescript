@@ -1035,8 +1035,6 @@ export class CartComponent {
 
 Splitting platform specific functionality into separate files/services, allows you to handle code differences in an elegant fashion, whilst keeping the common functionality shared.
 
-> TODO: This section probably needs a better explanation
-
 ### Migrating the rest of the component
 
 Finally, you can update the **Cart** component to be code-sharing ready.
@@ -1074,7 +1072,7 @@ Update **ProductList** template, to add a navigation link (`ActionItem`) for car
 ```html
 <ActionBar title="Products">
   <ActionItem ios.position="right" [nsRouterLink]="['/cart']">
-    <Label text="🛒 Cart" class="action-bar-item"></Label>
+    <Label text="Cart 🛒" class="action-bar-item"></Label>
   </ActionItem>
 </ActionBar>
 ```
@@ -1175,13 +1173,133 @@ Now, the **Product List** should look like this:
 
 **Step 4**
 
-> TODO: need to add a step for [(ngModel)] NativeScriptFormsModule
+
+
+Translate HTML to NativeScript template.
+
+**cart.component.html**
+
+```html
+<h3>Cart</h3>
+
+<p>
+  <a routerLink="/shipping">Shipping Prices</a>
+</p>
+
+<div class="cart-item" *ngFor="let item of items">
+  <span>{{ item.name }} </span>
+  <span>{{ item.price | currency }}</span>
+</div>
+
+<form [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value)">
+  <div>
+    <label>Name</label>
+    <input type="text" formControlName="name">
+  </div>
+
+  <div>
+    <label>Address</label>
+    <input type="text" formControlName="address">
+  </div>
+
+  <button class="button" type="submit">Purchase</button>
+</form>
+```
 
 
 
-> TODO: provide description
+The above translates really nicely, as follows:
 
+- `<h3>` => `ActionBar`
 
+  ```html
+  <ActionBar title="Cart">
+  </ActionBar>
+  ```
+
+As a container we could use a `StackLayout` and position it into `ScrollView` to provied scrollable area when the ocontent is larger than its bounds
+
+  ```html
+  <ScrollView>
+    <StackLayout>
+
+    </StackLayout>
+  </ScrollView>
+  ```
+
+Than:
+
+```html
+<p>
+  <a routerLink="/shipping">Shipping Prices</a>
+</p>
+```
+
+goes to
+
+```html
+    <Button row="0"
+      text="Shipping Prices" nsRouterLink="/shipping" class="btn btn-outline">
+    </Button>
+```
+
+and
+
+```html
+<div class="cart-item" *ngFor="let item of items">
+  <span>{{ item.name }} </span>
+  <span>{{ item.price | currency }}</span>
+</div>
+```
+
+goes to
+
+```html
+    <Label row="1" *ngIf="!items.length"
+      text="No Items in the Cart" class="h2 text-center m-10">
+    </Label>
+
+    <StackLayout row="1" class="m-8">
+      <GridLayout *ngFor="let item of items" columns="* auto" class="list-group cart-item">
+        <Label col="0" [text]="item.name" class="list-group-item"></Label>
+        <Label col="1" [text]="item.price | currency" class="list-group-item"></Label>
+      </GridLayout>
+    </StackLayout>
+```
+
+The `form` could transfer from
+
+```html
+
+<form [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value)">
+  <div>
+    <label>Name</label>
+    <input type="text" formControlName="name">
+  </div>
+
+  <div>
+    <label>Address</label>
+    <input type="text" formControlName="address">
+  </div>
+
+  <button class="button" type="submit">Purchase</button>
+</form>
+```
+
+to
+
+```html
+    <GridLayout row="2" rows="auto auto auto" columns="auto *" class="form">
+      <Label row="0" col="0" text="Name"></Label>
+      <TextField row="0" col="1" [(ngModel)]="checkoutForm.name" hint="name..."></TextField>
+      <Label row="1" col="0" text="Address"></Label>
+      <TextField row="1" col="1" [(ngModel)]="checkoutForm.address" hint="address..."></TextField>
+    </GridLayout>
+    <Button text="Purchase" (tap)="onSubmit(checkoutForm)" class="btn-green"></Button>
+
+```
+
+Finally the **cart.component.tns.html** should look like this:
 
 ```html
 <ActionBar title="Cart">
@@ -1308,10 +1426,3 @@ new CopyWebpackPlugin([
 ```
 
 In order to apply the changes to the `webpack.config.js` file, we need to stop the currently running process and start it again to pick up its new configuration. So, go back to your console/terminal and execute again `tns preview --bundle`.
-
-## Align Routing
-
-> TODO: Is it a good idea to move routes to app-routing.module.ts
-
-???
-
