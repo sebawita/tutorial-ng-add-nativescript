@@ -61,7 +61,7 @@ npm install --global @angular/cli
 
 ### NativeScript CLI
 
-To build mobile apps with NativeScript you will need to install the **NativeScript CLI**. Run the following command:
+To run mobile apps with NativeScript you will need to install the **NativeScript CLI**. Execute the following command:
 
 ```bash
 npm install --global nativescript
@@ -72,6 +72,8 @@ npm install --global nativescript
 <!--a) **Preview** uses two companion apps — **NativeScript Playground** ([Android](https://play.google.com/store/apps/details?id=org.nativescript.play), [iOS](https://apps.apple.com/us/app/nativescript-playground/id1263543946)) and **NativeScript Preview** ( [Android](https://play.google.com/store/apps/details?id=org.nativescript.preview), [iOS](https://apps.apple.com/us/app/nativescript-preview/id1264484702)) — installed on your Android/iOS device. Then when you perform a build, the NativeScript CLI pushes the updates directly to the NativeScript Preview app.--> 
 
 <!--b) **Local builds**: this perform a full Android/iOS build on your computer, which requires you to set up the Android SDK and/or XCode - [here is how](https://docs.nativescript.org/angular/start/quick-setup#full-setup) - and then deploys the app to a simulator or a connected device.-->
+
+<!--
 
 You can choose between two ways of building your apps:
 
@@ -93,7 +95,7 @@ Local builds are only required when:
 - you want to add a native plugin that is not included in the NativeScript Preview App
 - you need to publish the app to the Apple AppStore or the Google Play
 
-
+-->
 
 ### Preview
 
