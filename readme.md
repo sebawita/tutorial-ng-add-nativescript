@@ -45,6 +45,12 @@ If you don't have your version around, you can clone it from [https://github.com
 git clone https://github.com/sebawita/angular-getting-started.git
 ```
 
+Also, if you're not familiar with it, you can launch the web application via:
+
+```
+ng serve -o
+```
+
 The idea is to add NativeScript to the Getting Started app, and then step by step convert all web components to also work in NativeScript.
 
 
