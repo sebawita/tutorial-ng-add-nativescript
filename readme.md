@@ -1217,7 +1217,7 @@ The above translates really nicely, as follows:
   </ActionBar>
   ```
 
-As a container we could use a `StackLayout` and position it inside a `ScrollView` to provide a scrollable area when the ocontent is larger than its bounds.
+As a container we could use a `StackLayout` and position it inside a `ScrollView` to provide a scrollable area when the content is larger than its bounds.
 
   ```html
   <ScrollView>
