@@ -141,14 +141,14 @@ However, this does not convert your components to work in a mobile app, as HTML 
 
 ### Code Separation
 
-Before you can start code sharing, you need to know how to separate the web code from the mobile code. This is important, so that you could easily create platform-specific code without creating conflicts.
+Before you can start sharing code, you need to know how to separate the web code from the mobile code. This is important, so that you could easily create platform-specific code without creating conflicts.
 
 To do that you can use a simple **naming convention**. By adding a **.tns** before the file extension, you can indicate that this file is NativeScript-specific, while the same file without the **.tns** extension is marked as web-specific. If we have just one file without the **.tns** extension, then this makes it a shared file.
 
 <!--For example, you can notice that in the project there are two files:-->
 
-- <!--app.module.ts - the Entry Module file for web-->
-- <!--app.module**.tns**.ts - the Entry Module file for mobile-->
+<!-- - app.module.ts - the Entry Module file for web-->
+<!-- - app.module**.tns**.ts - the Entry Module file for mobile-->
 
 #### Component — Code-Sharing Format
 
@@ -174,7 +174,7 @@ tns preview --bundle
 
 After a short moment, the CLI will present you with a QR Code. Scan it with the **NativeScript Playground** app, which will connect your project with the **NativeScript Preview** app.
 
-As soon as you scan the QR Code, the CLI will compile the JavaScript code for Android or iOS, bundle it and push it to the **NativeScript Preview** app.
+As soon as you scan the QR Code, the CLI will bundle the TypeScript code from your project and push it to the **NativeScript Preview** app.
 
 
 
@@ -667,7 +667,7 @@ You should update the mobile template like this:
 
 ```html
 <StackLayout *ngIf="product.price > 700">
-  <Button (tap)="notify.emit()" text="Notify Me" class="btn-blue-outline"></Button>
+  <Button (tap)="notify.emit()" text="Notify Me" class="btn-green"></Button>
 </StackLayout>
 ```
 
@@ -880,7 +880,7 @@ Migrating the **Cart** component, is a little more challenging task, as it uses 
 
 ### Handling Web/Mobile specific code #2
 
-One of the best ways to handle a scenario like this to extract the constructing of a `FormBuilder` to a service. Then have two implementations of the same service, one that uses `FormBuilder`, and the other that recreates the same functionality without a `FormBuilder`.
+One of the best ways to handle a scenario like is this to extract the constructing of a `FormBuilder` to a service. Then have two implementations of the same service, one that uses `FormBuilder`, and the other that recreates the same functionality without a `FormBuilder`.
 
 
 
@@ -952,9 +952,11 @@ export class CheckoutFormService {
 
 **Step 3**
 
-Finally, you need to update the **Cart** class to use the `CheckoutFormService`.
+Finally, you need to update the **CartComponent** class to use the `CheckoutFormService`.
 
 Add `CheckoutFormService` to the `@Component` => `providers`, like this:
+
+**cart/cart.component.ts**
 
 ```typescript
 import { CheckoutFormService } from '@src/app/cart/checkout-form.service';
@@ -970,6 +972,8 @@ import { CheckoutFormService } from '@src/app/cart/checkout-form.service';
 
 
 Update the constructor to use `CheckoutFormService` instead of `FormBuilder`, like this:
+
+**cart/cart.component.ts**
 
 ```typescript
   constructor(
@@ -1092,7 +1096,7 @@ Go to the [download page](https://fontawesome.com/download) and download icons *
 
 **Step B**
 
-Create a `font` folder in `src`:
+Create a `fonts` folder in `src`:
 
 ```
 src
