@@ -232,7 +232,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 NativeScript provides a mobile specific implementation of the **HttpClient**, which is provided via **NativeScriptHttpClientModule**. 
 
-Open **app.module.tns.ts** where you will find a commented import for **NativeScriptHttpClientModule** class (*line 13*). Uncomment it, and add **NativeScriptHttpClientModule** to @NgModule **imports**, like this: 
+Open **app.module.tns.ts** where you will find a commented import for **NativeScriptHttpClientModule** class (*line 13*). Uncomment it, and add **NativeScriptHttpClientModule** to @NgModule **imports**, like this:
 
 ```typescript
 import { NativeScriptHttpClientModule } from 'nativescript-angular/http-client';
@@ -521,7 +521,7 @@ Add a list `ListView` component inside the `StackLayout`, like this:
 
 Note the following:
 
-- `[items]` — is used to provide a **data source**, it can also be used with an `async` pipe, like this: 
+- `[items]` — is used to provide a **data source**, it can also be used with an `async` pipe, like this:
 
    ```html
   <ListView [items]="data | async">
@@ -1217,7 +1217,7 @@ The above translates really nicely, as follows:
   </ActionBar>
   ```
 
-As a container we could use a `StackLayout` and position it into `ScrollView` to provied scrollable area when the ocontent is larger than its bounds
+As a container we could use a `StackLayout` and position it inside a `ScrollView` to provide a scrollable area when the ocontent is larger than its bounds.
 
   ```html
   <ScrollView>
@@ -1227,7 +1227,7 @@ As a container we could use a `StackLayout` and position it into `ScrollView` to
   </ScrollView>
   ```
 
-Than:
+Then:
 
 ```html
 <p>
@@ -1238,9 +1238,9 @@ Than:
 goes to
 
 ```html
-    <Button row="0"
-      text="Shipping Prices" nsRouterLink="/shipping" class="btn btn-outline">
-    </Button>
+<Button row="0"
+  text="Shipping Prices" nsRouterLink="/shipping" class="btn btn-outline">
+</Button>
 ```
 
 and
@@ -1255,22 +1255,21 @@ and
 goes to
 
 ```html
-    <Label row="1" *ngIf="!items.length"
-      text="No Items in the Cart" class="h2 text-center m-10">
-    </Label>
+<Label row="1" *ngIf="!items.length"
+  text="No Items in the Cart" class="h2 text-center m-10">
+</Label>
 
-    <StackLayout row="1" class="m-8">
-      <GridLayout *ngFor="let item of items" columns="* auto" class="list-group cart-item">
-        <Label col="0" [text]="item.name" class="list-group-item"></Label>
-        <Label col="1" [text]="item.price | currency" class="list-group-item"></Label>
-      </GridLayout>
-    </StackLayout>
+<StackLayout row="1" class="m-8">
+  <GridLayout *ngFor="let item of items" columns="* auto" class="list-group cart-item">
+    <Label col="0" [text]="item.name" class="list-group-item"></Label>
+    <Label col="1" [text]="item.price | currency" class="list-group-item"></Label>
+  </GridLayout>
+</StackLayout>
 ```
 
 The `form` could transfer from
 
 ```html
-
 <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value)">
   <div>
     <label>Name</label>
@@ -1289,17 +1288,33 @@ The `form` could transfer from
 to
 
 ```html
-    <GridLayout row="2" rows="auto auto auto" columns="auto *" class="form">
-      <Label row="0" col="0" text="Name"></Label>
-      <TextField row="0" col="1" [(ngModel)]="checkoutForm.name" hint="name..."></TextField>
-      <Label row="1" col="0" text="Address"></Label>
-      <TextField row="1" col="1" [(ngModel)]="checkoutForm.address" hint="address..."></TextField>
-    </GridLayout>
-    <Button text="Purchase" (tap)="onSubmit(checkoutForm)" class="btn-green"></Button>
-
+<GridLayout row="2" rows="auto auto auto" columns="auto *" class="form">
+  <Label row="0" col="0" text="Name"></Label>
+  <TextField row="0" col="1" [(ngModel)]="checkoutForm.name" hint="name..."></TextField>
+  <Label row="1" col="0" text="Address"></Label>
+  <TextField row="1" col="1" [(ngModel)]="checkoutForm.address" hint="address..."></TextField>
+</GridLayout>
+<Button text="Purchase" (tap)="onSubmit(checkoutForm)" class="btn-green"></Button>
 ```
 
-Finally the **cart.component.tns.html** should look like this:
+Before we can use the `ngModel` directive in data binding, we must import the `NativeScriptFormsModule` and add it to the Angular module's imports list.
+
+Open **app.module.tns.ts** where you will find a commented import for **NativeScriptFormsModule** class (*line 10*). Uncomment it, and add **NativeScriptFormsModule** to @NgModule **imports**, like this:
+
+```typescript
+import { NativeScriptFormsModule } from 'nativescript-angular/forms';
+
+@NgModule({
+  ...
+  imports: [
+    NativeScriptModule,
+    AppRoutingModule,
+    NativeScriptHttpClientModule,
+    NativeScriptFormsModule
+  ],
+```
+
+Finally, the **cart.component.tns.html** should look like this:
 
 ```html
 <ActionBar title="Cart">
@@ -1400,7 +1415,7 @@ Don't worry if the app doesn't work yet. Follow the below step before you test.
 
 **Step 4**
 
-NativeScript build process consists of two steps: bundling and building the native app. By default, there are certain files that do not include in the application's bundle such as fonts and images. The **webpack** bundler is explicitly instructed to copy these types of files to the native application in its configuration file.
+NativeScript build process consists of two steps: bundling and building the native app. By default, some files do not include in the application's bundle such as fonts and images. The **webpack** bundler is explicitly instructed to copy these types of files to the native application in its configuration file.
 
 Therefore, to make it possible for NativeScript to load **.json** files from the **assets** folder, you need to give information Webpack to copy the file into the native application. This can be done with the help of `CopyWebpackPlugin` like this:
 
