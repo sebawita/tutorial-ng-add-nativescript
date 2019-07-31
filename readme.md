@@ -177,7 +177,7 @@ Now is the best moment to test the new mobile app. This is done with the NativeS
 From the root of the project run the following command:
 
 ```bash
-tns preview --bundle
+tns preview
 ```
 
 After a short moment, the CLI will present you with a QR Code. Scan it with the **NativeScript Playground** app, which will connect your project with the **NativeScript Preview** app.
@@ -188,9 +188,9 @@ As soon as you scan the QR Code, the CLI will bundle the TypeScript code from yo
 
 > If you have the local build configured, then you can perform the build locally with the following commands:
 >
-> - **Android**: `tns run android --bundle` 
+> - **Android**: `tns run android`
 >
-> - **iOS**: `tns run ios --bundle` 
+> - **iOS**: `tns run ios`
 
 
 
@@ -202,7 +202,7 @@ You may notice that a big button with a text saying *"auto-generated works!"* is
 
 ### Livesync
 
-While the `tns preview --bundle` or `tns run [android/ios] --bundle` commands are active, any changes to the project will get automatically picked up by the NativeScript CLI and an update will be pushed to the app.
+While the `tns preview` or `tns run [android/ios]` commands are active, any changes to the project will get automatically picked up by the NativeScript CLI and an update will be pushed to the app.
 
 It is a good time to test it out.
 
@@ -1448,4 +1448,4 @@ new CopyWebpackPlugin([
 ], { ignore: [`${relative(appPath, appResourcesFullPath)}/**`] }),
 ```
 
-In order to apply the changes to the `webpack.config.js` file, we need to stop the currently running process and start it again to pick up its new configuration. So, go back to your console/terminal and execute again `tns preview --bundle`.
+In order to apply the changes to the `webpack.config.js` file, we need to stop the currently running process and start it again to pick up its new configuration. So, go back to your console/terminal and execute again `tns preview`.
